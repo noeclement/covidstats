@@ -1,9 +1,8 @@
 <template>
-  <div class="home column">
+  <div class="home">
     <div 
-      v-for="(e, index) in 12" 
-      :key="index" 
-      class="column">
+      v-for="(e, index) in 25" 
+      :key="index">
       <CountryCard
         name="France" />
     </div>
@@ -33,6 +32,7 @@ export default {
 
 <style lang="scss">
 .home {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   @media only screen and (min-width: 960px) {
