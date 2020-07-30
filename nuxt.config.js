@@ -24,7 +24,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [],
+  css: [{ src: 'bulma/sass/helpers/spacing.sass', lang: 'sass' }],
 
   /*
   ** Plugins to load before mounting the App
