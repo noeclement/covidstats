@@ -1,42 +1,22 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <div
-        v-for="(feature, i) of features"
-        :key="i"
-        class="column">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title has-text-grey">
-              {{ feature.title }}
-              {{ country }}
-            </p>
-          </header>
-          <div class="card-content">
-            <div class="content has-text-centered">
-              <b-icon
-                :icon="feature.icon"
-                size="is-large"
-                type="is-primary"/>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <div
-              class="card-footer-item"
-              v-html="feature.content"/>
-          </footer>
-        </div>
-      </div>
+  <div class="home column">
+    <div 
+      v-for="(e, index) in 12" 
+      :key="index" 
+      class="column">
+      <CountryCard
+        name="France" />
     </div>
-  </section>
+  </div>
+  
 </template>
 
 <script>
-import BLogo from '@/components/Logo'
+import CountryCard from '@/components/CountryCard'
 
 export default {
   name: 'HomePage',
-  components: { BLogo },
+  components: { CountryCard },
   async asyncData() {
     let country = ''
     await fetch(
@@ -47,32 +27,16 @@ export default {
         country = res[0].Country
       })
     return { country }
-  },
-  data() {
-    return {
-      features: [
-        {
-          icon: 'github-circle',
-          title: 'Free',
-          content: `<span>Open source on <a href="https://github.com/buefy/buefy"> GitHub</a></span>`
-        },
-        {
-          icon: 'cellphone-link',
-          title: 'Responsive',
-          content: `<span><b class="has-text-grey">Every</b> component is responsive</span>`
-        },
-        {
-          icon: 'alert-decagram',
-          title: 'Modern',
-          content: `<span>Built with <a href="https://vuejs.org/">Vue.js</a> and <a href="http://bulma.io/">Bulma</a></span>`
-        },
-        {
-          icon: 'arrange-bring-to-front',
-          title: 'Lightweight',
-          content: `<span>No other internal dependency</span>`
-        }
-      ]
-    }
   }
 }
 </script>
+
+<style lang="scss">
+.home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  @media only screen and (min-width: 960px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+</style>
