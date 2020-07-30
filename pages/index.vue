@@ -2,12 +2,16 @@
   <div class="home">
     <div class="mb-3">Last updated: {{ lastUpdated }}</div>
     <div class="home__listOfCountries">
-      <div 
-        v-for="(e, index) in countries" 
-        :key="index">
-        <CountryCard
-          :name="e.Country" />
-      </div>
+      <CountryCard
+        v-for="{ Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered, Date} in countries" 
+        :key="Country"
+        :name="Country"
+        :total-confirmed="TotalConfirmed"
+        :total-deaths="TotalDeaths"
+        :total-recovered="TotalRecovered"
+        :last-updated="Date"
+        :country-code="CountryCode.toLowerCase()"
+      />
     </div>
   </div>
   
