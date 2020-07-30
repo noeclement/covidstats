@@ -22,9 +22,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.card {
-  margin: 15px;
-}
-</style>
