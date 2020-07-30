@@ -9,6 +9,7 @@
           <header class="card-header">
             <p class="card-header-title has-text-grey">
               {{ feature.title }}
+              {{ country }}
             </p>
           </header>
           <div class="card-content">
@@ -36,6 +37,17 @@ import BLogo from '@/components/Logo'
 export default {
   name: 'HomePage',
   components: { BLogo },
+  async asyncData() {
+    let country = ''
+    await fetch(
+      'https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z'
+    )
+      .then(res => res.json())
+      .then(res => {
+        country = res[0].Country
+      })
+    return { country }
+  },
   data() {
     return {
       features: [
