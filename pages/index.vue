@@ -1,6 +1,8 @@
 <template>
   <div class="home my-6">
     <div class="mb-3">Last updated: {{ lastUpdated }}</div>
+    <TotalDeathsFilter class="home__totalDeathsFilter" />
+    {{ countries.length }} results
     <div class="home__listOfCountries">
       <CountryCard
         v-for="{ Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered, Date} in paginatedCountries" 
@@ -21,14 +23,19 @@
 <script>
 import CountryCard from '@/components/CountryCard'
 import Pagination from '@/components/Pagination'
+import TotalDeathsFilter from '@/components/TotalDeathsFilter'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
-  components: { CountryCard, Pagination },
-  computed: {
-    ...mapGetters(['lastUpdated', 'paginatedCountries'])
+  components: { CountryCard, Pagination, TotalDeathsFilter },
+  data() {
+    return {}
   },
+  computed: {
+    ...mapGetters(['countries', 'lastUpdated', 'paginatedCountries'])
+  },
+
   middleware: 'pagination'
 }
 </script>
@@ -39,6 +46,9 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     grid-gap: 20px;
+  }
+  &__totalDeathsFilter {
+    width: 50%;
   }
 }
 </style>
