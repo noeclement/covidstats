@@ -28,7 +28,8 @@ export default {
   components: { CountryCard, Pagination },
   computed: {
     ...mapGetters(['lastUpdated', 'paginatedCountries'])
-  }
+  },
+  middleware: 'pagination'
 }
 </script>
 
