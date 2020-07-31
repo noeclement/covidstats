@@ -1,6 +1,6 @@
 <template>
   <div class="home my-6">
-    <div class="mb-3">Last updated: {{ $store.getters.lastUpdated }}</div>
+    <div class="mb-3">Last updated: {{ lastUpdated }}</div>
     <div class="home__listOfCountries">
       <CountryCard
         v-for="{ Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered, Date} in paginatedCountries" 
@@ -21,23 +21,13 @@
 <script>
 import CountryCard from '@/components/CountryCard'
 import Pagination from '@/components/Pagination'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
   components: { CountryCard, Pagination },
-  async asyncData({ $axios }) {
-    const summary = await $axios.$get('https://api.covid19api.com/summary')
-    return {
-      lastUpdated: summary.Date
-    }
-  },
   computed: {
-    paginatedCountries() {
-      console.log('pagesCount', this.$store.getters.pagesCount)
-      return this.$store.getters.paginatedCountries(
-        this.$store.getters.currentPage
-      )
-    }
+    ...mapGetters(['lastUpdated', 'paginatedCountries'])
   }
 }
 </script>
