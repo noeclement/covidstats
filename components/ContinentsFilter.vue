@@ -26,6 +26,7 @@ export default {
       },
       set(value) {
         this.$store.dispatch('set_activeContinents', value)
+        this.$store.dispatch('set_selectedCountries', '')
       }
     }
   }

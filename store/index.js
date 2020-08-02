@@ -57,7 +57,9 @@ export const getters = {
       )
       const selectedCountries =
         state.selectedCountries.length === 0 ||
-        state.selectedCountries.includes(country.CountryCode)
+        state.selectedCountries
+          .map(e => e.CountryCode)
+          .includes(country.CountryCode)
       const totalDeathsOk = country.TotalDeaths >= state.totalDeathsFilter
 
       return continentsOk && selectedCountries && totalDeathsOk
