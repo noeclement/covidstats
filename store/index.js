@@ -8,6 +8,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  set_activeContinents(state, payload) {
+    state.activeContinents = payload
+  },
   set_covidStats(state, payload) {
     state.covidStats = payload
   },
@@ -30,10 +33,14 @@ export const actions = {
   },
   set_totalDeathsFilter({ commit }, payload) {
     commit('set_totalDeathsFilter', payload)
+  },
+  set_activeContinents({ commit }, payload) {
+    commit('set_activeContinents', payload)
   }
 }
 
 export const getters = {
+  activeContinents: state => state.activeContinents,
   currentPage: state => state.currentPage,
   countries: state => {
     return state.covidStats.Countries.filter(country => {

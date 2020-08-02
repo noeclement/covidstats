@@ -2,6 +2,7 @@
   <div class="home my-6">
     <div class="mb-3">Last updated: {{ lastUpdated }}</div>
     <TotalDeathsFilter class="home__totalDeathsFilter" />
+    <ContinentsFilter />
     {{ countries.length }} results
     <div class="home__listOfCountries">
       <CountryCard
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import ContinentsFilter from '@/components/ContinentsFilter'
 import CountryCard from '@/components/CountryCard'
 import Pagination from '@/components/Pagination'
 import TotalDeathsFilter from '@/components/TotalDeathsFilter'
@@ -28,7 +30,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
-  components: { CountryCard, Pagination, TotalDeathsFilter },
+  components: { ContinentsFilter, CountryCard, Pagination, TotalDeathsFilter },
   data() {
     return {}
   },
