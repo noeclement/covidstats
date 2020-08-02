@@ -8,11 +8,23 @@
     <div 
       :style="cardStyle" 
       class="card-content" >
-      <div class="content has-text-centered">
-        Total confirmed: {{ totalConfirmed }}<br>
-        Total deaths: {{ totalDeaths }}<br>
-        Total recovered: {{ totalRecovered }}<br><br>
-        Last updated: {{ lastUpdated }}
+      <div class="content">
+        <div>
+          <b-icon 
+            icon="circle" 
+            type="is-warning" />
+          {{ totalConfirmed }} confirmed
+        </div>
+        <div>
+          <b-icon 
+            icon="circle" 
+            type="is-danger" /> {{ totalDeaths }} dead
+        </div>
+        <div>
+          <b-icon 
+            icon="circle" 
+            type="is-success" /> {{ totalRecovered }} recovered
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +38,6 @@ export default {
     totalConfirmed: { type: Number, default: 0 },
     totalDeaths: { type: Number, default: 0 },
     totalRecovered: { type: Number, default: 0 },
-    lastUpdated: { type: String, default: '' },
     countryCode: { type: String, default: '' }
   },
   data() {
@@ -39,15 +50,25 @@ export default {
           this.countryCode
         }.webp');
         background-size:cover;
+        padding: 0;
       `
     }
   }
 }
 </script>
 
-<style scoped>
-.card-content .content {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
+<style lang="scss" scoped>
+.card-content {
+  .content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+  }
+  &__svg {
+    width: 100px;
+    height: 100;
+    fill: red;
+  }
 }
 </style>

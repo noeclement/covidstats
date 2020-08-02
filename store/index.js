@@ -27,7 +27,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit({ commit, dispatch }, { $axios }) {
+  async nuxtServerInit({ commit }, { $axios }) {
     await $axios.$get('https://api.covid19api.com/summary').then(data => {
       commit('set_covidStats', data)
     })
@@ -65,9 +65,10 @@ export const getters = {
       return continentsOk && selectedCountries && totalDeathsOk
     })
   },
+  filteredCountriesCount: ({}, getters) => getters.filteredCountries.length,
   totalDeathsFilter: state => state.totalDeathsFilter,
   lastUpdated: state => state.covidStats.Date,
-  pagesCount: ({}, getters) => Math.ceil(getters.filteredCountries.length / 25),
+  pagesCount: ({}, getters) => Math.ceil(getters.filteredCountriesCount / 25),
   paginatedCountries: (state, getters) => {
     const page = state.currentPage
     return getters.filteredCountries.slice(page * 25, page * 25 + 25)

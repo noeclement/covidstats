@@ -27,6 +27,8 @@ export default {
       },
       set(value) {
         this.$store.dispatch('set_totalDeathsFilter', value)
+        this.$store.dispatch('set_currentPage', 0)
+        this.$router.push({ query: { page: 1 } })
       }
     }
   }

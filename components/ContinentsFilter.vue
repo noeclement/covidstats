@@ -27,6 +27,8 @@ export default {
       set(value) {
         this.$store.dispatch('set_activeContinents', value)
         this.$store.dispatch('set_selectedCountries', '')
+        this.$store.dispatch('set_currentPage', 0)
+        this.$router.push({ query: { page: 1 } })
       }
     }
   }

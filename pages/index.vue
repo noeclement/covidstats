@@ -1,24 +1,28 @@
 <template>
   <div class="home my-6">
     <div class="mb-3">Last updated: {{ lastUpdated }}</div>
-    <CountrySearchbox/>
+    <b-icon 
+      icon="fiber_manual_record" />
+    <CountrySearchbox />
     <TotalDeathsFilter class="home__totalDeathsFilter" />
     <ContinentsFilter />
-    {{ filteredCountries.length }} results
+    <Pagination 
+      class="my-5" 
+      position="top" />
     <div class="home__listOfCountries">
       <CountryCard
-        v-for="{ Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered, Date} in paginatedCountries" 
+        v-for="{ Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered } in paginatedCountries" 
         :key="Country"
         :name="Country"
         :total-confirmed="TotalConfirmed"
         :total-deaths="TotalDeaths"
         :total-recovered="TotalRecovered"
-        :last-updated="Date"
         :country-code="CountryCode.toLowerCase()"
       />
     </div>
-    <br>
-    <Pagination />
+    <Pagination 
+      class="my-5" 
+      position="bottom" />
   </div>
 </template>
 
@@ -43,9 +47,15 @@ export default {
     return {}
   },
   computed: {
-    ...mapGetters(['filteredCountries', 'lastUpdated', 'paginatedCountries'])
+    ...mapGetters([
+      'countries',
+      'currentPage',
+      'filteredCountries',
+      'lastUpdated',
+      'pagesCount',
+      'paginatedCountries'
+    ])
   },
-
   middleware: 'pagination'
 }
 </script>
@@ -54,7 +64,7 @@ export default {
 .home {
   &__listOfCountries {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     grid-gap: 20px;
   }
   &__totalDeathsFilter {

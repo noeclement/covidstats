@@ -42,6 +42,8 @@ export default {
           'Europe',
           'Oceania'
         ])
+        this.$store.dispatch('set_currentPage', 0)
+        this.$router.push({ query: { page: 1 } })
         this.inputValue = ''
       }
     }
