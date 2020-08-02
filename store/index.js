@@ -4,6 +4,7 @@ export const state = () => ({
   activeContinents: ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'],
   covidStats: [],
   currentPage: 0,
+  selectedCountries: [],
   totalDeathsFilter: 0
 })
 
@@ -19,6 +20,9 @@ export const mutations = {
   },
   set_totalDeathsFilter(state, payload) {
     state.totalDeathsFilter = payload
+  },
+  set_selectedCountries(state, payload) {
+    state.selectedCountries = payload
   }
 }
 
@@ -36,26 +40,35 @@ export const actions = {
   },
   set_activeContinents({ commit }, payload) {
     commit('set_activeContinents', payload)
+  },
+  set_selectedCountries({ commit }, payload) {
+    commit('set_selectedCountries', payload)
   }
 }
 
 export const getters = {
   activeContinents: state => state.activeContinents,
+  countries: state => state.covidStats.Countries,
   currentPage: state => state.currentPage,
-  countries: state => {
+  filteredCountries: state => {
     return state.covidStats.Countries.filter(country => {
-      const totalDeathsOk = country.TotalDeaths >= state.totalDeathsFilter
       const continentsOk = state.activeContinents.some(continent =>
         countryCodesByContinent[continent].includes(country.CountryCode)
       )
-      return totalDeathsOk && continentsOk
+      const selectedCountries =
+        state.selectedCountries.length === 0 ||
+        state.selectedCountries.includes(country.CountryCode)
+      const totalDeathsOk = country.TotalDeaths >= state.totalDeathsFilter
+
+      return continentsOk && selectedCountries && totalDeathsOk
     })
   },
   totalDeathsFilter: state => state.totalDeathsFilter,
   lastUpdated: state => state.covidStats.Date,
-  pagesCount: ({}, getters) => Math.ceil(getters.countries.length / 25),
+  pagesCount: ({}, getters) => Math.ceil(getters.filteredCountries.length / 25),
   paginatedCountries: (state, getters) => {
     const page = state.currentPage
-    return getters.countries.slice(page * 25, page * 25 + 25)
-  }
+    return getters.filteredCountries.slice(page * 25, page * 25 + 25)
+  },
+  selectedCountries: state => state.selectedCountries
 }

@@ -1,9 +1,10 @@
 <template>
   <div class="home my-6">
     <div class="mb-3">Last updated: {{ lastUpdated }}</div>
+    <CountrySearchbox/>
     <TotalDeathsFilter class="home__totalDeathsFilter" />
     <ContinentsFilter />
-    {{ countries.length }} results
+    {{ filteredCountries.length }} results
     <div class="home__listOfCountries">
       <CountryCard
         v-for="{ Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered, Date} in paginatedCountries" 
@@ -24,18 +25,25 @@
 <script>
 import ContinentsFilter from '@/components/ContinentsFilter'
 import CountryCard from '@/components/CountryCard'
+import CountrySearchbox from '@/components/CountrySearchbox'
 import Pagination from '@/components/Pagination'
 import TotalDeathsFilter from '@/components/TotalDeathsFilter'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
-  components: { ContinentsFilter, CountryCard, Pagination, TotalDeathsFilter },
+  components: {
+    ContinentsFilter,
+    CountryCard,
+    CountrySearchbox,
+    Pagination,
+    TotalDeathsFilter
+  },
   data() {
     return {}
   },
   computed: {
-    ...mapGetters(['countries', 'lastUpdated', 'paginatedCountries'])
+    ...mapGetters(['filteredCountries', 'lastUpdated', 'paginatedCountries'])
   },
 
   middleware: 'pagination'
