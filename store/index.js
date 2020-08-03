@@ -76,7 +76,7 @@ export const getters = {
   defaultContinents: state => state.defaultContinents,
   filteredCountries: state => {
     return state.covidStats.Countries.filter(country => {
-      const continentsOk = state.activeContinents.some(continent =>
+      const continents = state.activeContinents.some(continent =>
         countryCodesByContinent[continent].includes(country.CountryCode)
       )
       const selectedCountries =
@@ -84,11 +84,11 @@ export const getters = {
         state.selectedCountries
           .map(e => e.CountryCode)
           .includes(country.CountryCode)
-      const totalDeathsOk = country.TotalDeaths >= state.totalDeathsFilter
-      const deathsRatioOk =
+      const totalDeaths = country.TotalDeaths >= state.totalDeathsFilter
+      const deathsRatio =
         (country.TotalDeaths / country.TotalConfirmed) * 100 >=
         state.deathsRatio
-      return continentsOk && selectedCountries && totalDeathsOk && deathsRatioOk
+      return continents && selectedCountries && totalDeaths && deathsRatio
     })
   },
   filteredCountriesCount: ({}, getters) => getters.filteredCountries.length,
