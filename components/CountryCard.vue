@@ -14,21 +14,21 @@
             icon="circle" 
             type="is-warning"
             class="mr-2" />
-          {{ totalConfirmed }} confirmed
+          {{ totalConfirmed | usFormat }} confirmed
         </div>
         <div class="content__container my-1">
           <b-icon 
             icon="circle" 
             type="is-danger"
             class="mr-2" />
-          {{ totalDeaths }} dead
+          {{ totalDeaths | usFormat }} dead
         </div>
         <div class="content__container my-1">
           <b-icon 
             icon="circle" 
             type="is-success"
             class="mr-2" />
-          {{ totalRecovered }} recovered
+          {{ totalRecovered | usFormat }} recovered
         </div>
       </div>
     </div>
