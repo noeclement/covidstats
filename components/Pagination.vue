@@ -36,8 +36,8 @@ export default {
       'pagesCount'
     ]),
     resultsCount() {
-      const from = 25 * this.currentPage + 1
-      let to = 25 * (this.currentPage + 1)
+      const from = 24 * this.currentPage + 1
+      let to = 24 * (this.currentPage + 1)
       const totalCount = this.filteredCountriesCount
       if (to > totalCount) to = totalCount
       return `Results ${from} - ${to} of ${totalCount}`

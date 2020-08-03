@@ -9,21 +9,26 @@
       :style="cardStyle" 
       class="card-content" >
       <div class="content">
-        <div>
+        <div class="content__container my-1">
           <b-icon 
             icon="circle" 
-            type="is-warning" />
+            type="is-warning"
+            class="mr-2" />
           {{ totalConfirmed }} confirmed
         </div>
-        <div>
+        <div class="content__container my-1">
           <b-icon 
             icon="circle" 
-            type="is-danger" /> {{ totalDeaths }} dead
+            type="is-danger"
+            class="mr-2" />
+          {{ totalDeaths }} dead
         </div>
-        <div>
+        <div class="content__container my-1">
           <b-icon 
             icon="circle" 
-            type="is-success" /> {{ totalRecovered }} recovered
+            type="is-success"
+            class="mr-2" />
+          {{ totalRecovered }} recovered
         </div>
       </div>
     </div>
@@ -64,6 +69,10 @@ export default {
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
+    &__container {
+      display: flex;
+      align-items: center;
+    }
   }
   &__svg {
     width: 100px;

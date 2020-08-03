@@ -1,16 +1,23 @@
 <template>
   <div class="filterByCountry">
-    <b-taginput
-      v-model="selectedCountries"
-      :data="countries"
-      autocomplete
-      field="Country"
-      icon="label"
-      placeholder="Filter by country"
-      @typing="autocompletion" />
-    <b-button 
-      class="ml-3" 
-      @click="handleReset">Reset</b-button>
+    <b-field
+      label="Filter by Country">
+      <div class="filterByCountry__inputContainer">
+        <b-taginput
+          v-model="selectedCountries"
+          :data="countries"
+          autocomplete
+          field="Country"
+          icon="label"
+          placeholder="Select a country"
+          @typing="autocompletion" />
+        <b-button 
+          class="ml-3" 
+          @click="handleReset">Reset</b-button>
+      </div>
+      
+    </b-field>
+    
   </div>
 </template>
 
@@ -62,7 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.filterByCountry {
+.filterByCountry__inputContainer {
   display: flex;
+  flex-direction: row;
 }
 </style>

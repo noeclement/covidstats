@@ -27,6 +27,12 @@ export const mutations = {
   },
   set_selectedCountries(state, payload) {
     state.selectedCountries = payload
+  },
+  reset_filters(state) {
+    state.selectedCountries = []
+    state.totalDeathsFilter = 0
+    state.activeContinents = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+    state.deathsRatio = 0
   }
 }
 
@@ -50,6 +56,9 @@ export const actions = {
   },
   set_selectedCountries({ commit }, payload) {
     commit('set_selectedCountries', payload)
+  },
+  reset_filters({ commit }) {
+    commit('reset_filters')
   }
 }
 
@@ -78,10 +87,10 @@ export const getters = {
   deathsRatio: state => state.deathsRatio,
   totalDeathsFilter: state => state.totalDeathsFilter,
   lastUpdated: state => state.covidStats.Date,
-  pagesCount: ({}, getters) => Math.ceil(getters.filteredCountriesCount / 25),
+  pagesCount: ({}, getters) => Math.ceil(getters.filteredCountriesCount / 24),
   paginatedCountries: (state, getters) => {
     const page = state.currentPage
-    return getters.filteredCountries.slice(page * 25, page * 25 + 25)
+    return getters.filteredCountries.slice(page * 24, page * 24 + 24)
   },
   selectedCountries: state => state.selectedCountries
 }

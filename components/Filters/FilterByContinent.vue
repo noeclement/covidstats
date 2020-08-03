@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <div>
-      <b-checkbox
-        v-for="continent in continents"
-        :key="continent"
-        :native-value="continent"
-        v-model="activeContinents">
-        {{ continent }}
-      </b-checkbox>
-    </div>
+  <div class="filterByContinent">
+    <b-field
+      label="Filter by Continent">
+      <div class="filterByContinent__checkboxesContainer">
+        <b-checkbox
+          v-for="continent in continents"
+          :key="continent"
+          :native-value="continent"
+          v-model="activeContinents"
+          class="my-1">
+          {{ continent }}
+        </b-checkbox>
+      </div>
+    </b-field>
   </div>
 </template>
 
@@ -35,3 +39,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.filterByContinent__checkboxesContainer {
+  display: flex;
+  flex-direction: column;
+}
+</style>
