@@ -27,7 +27,7 @@ import Pagination from '@/components/Pagination'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'HomePage',
+  name: 'Home',
   components: {
     CountryCard,
     Filters,

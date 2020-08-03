@@ -5,7 +5,7 @@
       <div class="filterByCountry__inputContainer">
         <b-taginput
           v-model="selectedCountries"
-          :data="countries"
+          :data="matchingCountries"
           autocomplete
           field="Country"
           icon="label"
@@ -30,7 +30,8 @@ export default {
     }
   },
   computed: {
-    countries() {
+    // Returns countries for which the country name or country code contains the string typed by the user
+    matchingCountries() {
       return this.$store.getters.countries.filter(
         e =>
           e.Country.toLowerCase().indexOf(this.inputValue.toLowerCase()) >= 0 ||
@@ -44,14 +45,11 @@ export default {
       },
       set(value) {
         this.$store.dispatch('set_selectedCountries', value)
-        this.$store.dispatch('set_activeContinents', [
-          'Africa',
-          'Americas',
-          'Asia',
-          'Europe',
-          'Oceania'
-        ])
-        this.$store.dispatch('set_currentPage', 0)
+        // Reset continent filter when selecting a country
+        this.$store.dispatch(
+          'set_activeContinents',
+          this.$store.getters.defaultContinents
+        )
         this.$router.push({ query: { page: 1 } })
         this.inputValue = ''
       }

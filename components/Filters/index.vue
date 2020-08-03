@@ -38,7 +38,6 @@ export default {
   methods: {
     handleResetAll() {
       this.$store.dispatch('reset_filters')
-      this.$store.dispatch('set_currentPage', 0)
       this.$router.push({ query: { page: 1 } })
     }
   }

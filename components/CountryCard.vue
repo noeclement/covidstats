@@ -45,11 +45,9 @@ export default {
     totalRecovered: { type: Number, default: 0 },
     countryCode: { type: String, default: '' }
   },
-  data() {
-    return {}
-  },
   computed: {
     cardStyle() {
+      // Fetch country flag from flagpedia
       return `
         background-image: url('https://flagpedia.net/data/flags/w1160/${
           this.countryCode

@@ -4,11 +4,12 @@
       label="Filter by Continent">
       <div class="filterByContinent__checkboxesContainer">
         <b-checkbox
-          v-for="continent in continents"
+          v-for="continent in defaultContinents"
           :key="continent"
           :native-value="continent"
           v-model="activeContinents"
-          class="my-1">
+          class="my-1"
+        >
           {{ continent }}
         </b-checkbox>
       </div>
@@ -17,14 +18,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'FilterByContinent',
-  data() {
-    return {
-      continents: ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
-    }
-  },
   computed: {
+    ...mapGetters(['defaultContinents']),
     activeContinents: {
       get() {
         return this.$store.getters.activeContinents
@@ -32,7 +31,6 @@ export default {
       set(value) {
         this.$store.dispatch('set_activeContinents', value)
         this.$store.dispatch('set_selectedCountries', '')
-        this.$store.dispatch('set_currentPage', 0)
         this.$router.push({ query: { page: 1 } })
       }
     }

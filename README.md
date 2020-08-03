@@ -1,6 +1,6 @@
-# covidstats
+# CovidStats2020
 
-> Get the latest Covid statistics
+> Get the latest Covid statistics.
 
 ## Build Setup
 

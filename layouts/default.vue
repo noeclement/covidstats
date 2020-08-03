@@ -8,7 +8,8 @@
             width="50"
             height="50"
             src="~assets/virus.png" 
-            alt="Virus logo">
+            alt="Virus logo"
+          >
           <h1 class="layout__title ml-3">CovidStats 2020</h1>
           
         </div>
@@ -27,6 +28,7 @@
 import Filters from '@/components/Filters'
 
 export default {
+  name: 'Layout',
   components: { Filters }
 }
 </script>
