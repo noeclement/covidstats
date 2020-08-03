@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="filterByCountry">
     <b-taginput
       v-model="selectedCountries"
       :data="countries"
@@ -8,13 +8,15 @@
       icon="label"
       placeholder="Filter by country"
       @typing="autocompletion" />
-    <b-button @click="handleReset">Reset</b-button>
+    <b-button 
+      class="ml-3" 
+      @click="handleReset">Reset</b-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CountrySearchbox',
+  name: 'FilterByCountry',
   data() {
     return {
       inputValue: ''
@@ -58,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.filterByCountry {
+  display: flex;
+}
+</style>

@@ -1,14 +1,9 @@
 <template>
-  <div class="home my-6">
-    <div class="mb-3">Last updated: {{ lastUpdated }}</div>
-    <b-icon 
-      icon="fiber_manual_record" />
-    <CountrySearchbox />
-    <TotalDeathsFilter class="home__totalDeathsFilter" />
-    <ContinentsFilter />
-    <Pagination 
-      class="my-5" 
-      position="top" />
+  <div class="home">
+    <div class="home__filters">
+      <!-- <div class="pb-3">Last updated: {{ lastUpdated }}</div> -->
+      <Filters />
+    </div>
     <div class="home__listOfCountries">
       <CountryCard
         v-for="{ Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered } in paginatedCountries" 
@@ -20,28 +15,21 @@
         :country-code="CountryCode.toLowerCase()"
       />
     </div>
-    <Pagination 
-      class="my-5" 
-      position="bottom" />
   </div>
 </template>
 
 <script>
-import ContinentsFilter from '@/components/ContinentsFilter'
 import CountryCard from '@/components/CountryCard'
-import CountrySearchbox from '@/components/CountrySearchbox'
+import Filters from '@/components/Filters'
 import Pagination from '@/components/Pagination'
-import TotalDeathsFilter from '@/components/TotalDeathsFilter'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
   components: {
-    ContinentsFilter,
     CountryCard,
-    CountrySearchbox,
-    Pagination,
-    TotalDeathsFilter
+    Filters,
+    Pagination
   },
   data() {
     return {}
@@ -67,8 +55,11 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     grid-gap: 20px;
   }
-  &__totalDeathsFilter {
-    width: 50%;
+  &__filters {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 111;
   }
 }
 </style>

@@ -5,7 +5,8 @@ export const state = () => ({
   covidStats: [],
   currentPage: 0,
   selectedCountries: [],
-  totalDeathsFilter: 0
+  totalDeathsFilter: 0,
+  deathsRatio: 0
 })
 
 export const mutations = {
@@ -17,6 +18,9 @@ export const mutations = {
   },
   set_currentPage(state, payload) {
     state.currentPage = payload
+  },
+  set_deathsRatio(state, payload) {
+    state.deathsRatio = payload
   },
   set_totalDeathsFilter(state, payload) {
     state.totalDeathsFilter = payload
@@ -34,6 +38,9 @@ export const actions = {
   },
   set_currentPage({ commit }, payload) {
     commit('set_currentPage', payload)
+  },
+  set_deathsRatio({ commit }, payload) {
+    commit('set_deathsRatio', payload)
   },
   set_totalDeathsFilter({ commit }, payload) {
     commit('set_totalDeathsFilter', payload)
@@ -61,11 +68,14 @@ export const getters = {
           .map(e => e.CountryCode)
           .includes(country.CountryCode)
       const totalDeathsOk = country.TotalDeaths >= state.totalDeathsFilter
-
-      return continentsOk && selectedCountries && totalDeathsOk
+      const deathsRatioOk =
+        (country.TotalDeaths / country.TotalConfirmed) * 100 >=
+        state.deathsRatio
+      return continentsOk && selectedCountries && totalDeathsOk && deathsRatioOk
     })
   },
   filteredCountriesCount: ({}, getters) => getters.filteredCountries.length,
+  deathsRatio: state => state.deathsRatio,
   totalDeathsFilter: state => state.totalDeathsFilter,
   lastUpdated: state => state.covidStats.Date,
   pagesCount: ({}, getters) => Math.ceil(getters.filteredCountriesCount / 25),

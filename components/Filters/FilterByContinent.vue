@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="block">
+    <div>
       <b-checkbox
         v-for="continent in continents"
         :key="continent"
@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'FilterByContinent',
   data() {
     return {
       continents: ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
