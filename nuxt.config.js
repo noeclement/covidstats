@@ -65,5 +65,6 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  buildModules: ['@nuxtjs/moment']
 }

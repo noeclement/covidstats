@@ -1,9 +1,5 @@
 <template>
   <div class="home">
-    <!-- <div class="home__filters">
-      <div class="pb-3">Last updated: {{ lastUpdated }}</div>
-      <Filters />
-    </div> -->
     <Pagination 
       position="top" 
       class="pt-3 pb-5" />
@@ -45,7 +41,6 @@ export default {
       'countries',
       'currentPage',
       'filteredCountries',
-      'lastUpdated',
       'pagesCount',
       'paginatedCountries'
     ])
@@ -60,12 +55,6 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     grid-gap: 20px;
-  }
-  &__filters {
-    background: white;
-    position: sticky;
-    top: 0;
-    z-index: 111;
   }
 }
 </style>
