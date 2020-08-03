@@ -33,8 +33,8 @@ export default {
     Filters,
     Pagination
   },
-  data() {
-    return {}
+  head() {
+    return { title: 'CovidStats 2020' }
   },
   computed: {
     ...mapGetters([
