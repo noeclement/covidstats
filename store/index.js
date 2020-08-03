@@ -6,7 +6,8 @@ export const state = () => ({
   currentPage: 0,
   selectedCountries: [],
   totalDeathsFilter: 0,
-  deathsRatio: 0
+  deathsRatio: 0,
+  loading: false
 })
 
 export const mutations = {
@@ -37,10 +38,15 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit({ commit }, { $axios }) {
-    await $axios.$get('https://api.covid19api.com/summary').then(data => {
-      commit('set_covidStats', data)
-    })
+  async nuxtServerInit({ commit }, { $axios, error }) {
+    await $axios
+      .$get('https://api.covid19api.com/summary')
+      .then(data => {
+        commit('set_covidStats', data)
+      })
+      .catch(e => {
+        error('Error while fetching data from the Covid 19 API.')
+      })
   },
   set_currentPage({ commit }, payload) {
     commit('set_currentPage', payload)

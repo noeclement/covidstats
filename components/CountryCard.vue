@@ -63,6 +63,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card-header-title {
+  font-family: 'Catamaran';
+}
+
 .card-content {
   .content {
     display: flex;

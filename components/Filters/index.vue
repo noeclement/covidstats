@@ -1,14 +1,14 @@
 <template>
   <div class="filters">
-    <FilterByCountry class="py-4" />
-    <FilterByContinent class="py-4" />
-    <FilterByNumbers class="py-4" />
-    <div class="has-text-centered py-4">
+    <FilterByCountry class="py-3" />
+    <FilterByContinent class="py-3" />
+    <FilterByNumbers class="py-3" />
+    <div class="has-text-centered py-3">
       <b-button @click="handleResetAll">
         Reset All
       </b-button>
     </div>
-    <div class="filters__footnote mb-5">
+    <div class="mt-3">
       Data provided by <a 
         href="https://covid19api.com/" 
         target="__blank">Covid19api.com</a><br>
@@ -44,12 +44,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.filters {
-  &__footnote {
-    position: fixed;
-    bottom: 0;
-  }
-}
-</style>

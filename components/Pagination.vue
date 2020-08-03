@@ -15,7 +15,7 @@
       </b-button>
     </div>
     <div 
-      v-if="position === 'bottom'" 
+      v-if="position === 'bottom' && filteredCountriesCount !== 0" 
       class="mt-3">
       {{ resultsCount }}
     </div>
@@ -36,10 +36,11 @@ export default {
       'pagesCount'
     ]),
     resultsCount() {
-      const from = 24 * this.currentPage + 1
+      let from = 24 * this.currentPage + 1
       let to = 24 * (this.currentPage + 1)
       const totalCount = this.filteredCountriesCount
       if (to > totalCount) to = totalCount
+      if (totalCount === 0) return 'No results.'
       return `Results ${from} - ${to} of ${totalCount}`
     }
   },
