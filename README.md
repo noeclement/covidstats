@@ -2,6 +2,11 @@
 
 > Get the latest Covid statistics.
 
+## Demo
+
+https://covid-statistics-2020.herokuapp.com/
+
+
 ## Build Setup
 
 ``` bash
